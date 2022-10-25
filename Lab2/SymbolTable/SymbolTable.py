@@ -2,7 +2,8 @@ import sys
 
 class SymbolTable:
     def __init__(self):
-        self.arr = [-sys.maxsize] * 10000
+        self.arr = [-sys.maxsize] * 2
+        self.elementsCount = 0
 
 
     def getArray(self):
@@ -21,20 +22,25 @@ class SymbolTable:
         for index in range(elementHash, len(self.arr)-1):
             if self.arr[index] == -sys.maxsize:
                 self.arr[index] = element
+                self.elementsCount += 1
                 return index
-        for index in range(0, elementHash-1):
+        for index in range(0, elementHash):
             if self.arr[index] == -sys.maxsize:
                 self.arr[index] = element
+                self.elementsCount += 1
                 return index
         return -69
             
 
     def store(self, element):
-        elementHash = self.__hashFunction(element)
-        if elementHash > len(self.arr): elementHash = 1
-        if self.arr[elementHash] == -sys.maxsize:
-            self.arr[elementHash] = element
-            return elementHash
-        elif self.arr[elementHash] == element:
-            return elementHash
-        return self.__solveStoreConflict(element, elementHash)
+        if self.elementsCount != len(self.arr):
+            elementHash = self.__hashFunction(element)
+            if elementHash > len(self.arr): elementHash = 0
+            if self.arr[elementHash] == -sys.maxsize:
+                self.arr[elementHash] = element
+                self.elementsCount += 1
+                return elementHash
+            elif self.arr[elementHash] == element:
+                return elementHash
+            return self.__solveStoreConflict(element, elementHash)
+        else: raise ValueError("Symbol table is full")
