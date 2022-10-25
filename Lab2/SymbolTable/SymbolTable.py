@@ -31,6 +31,7 @@ class SymbolTable:
 
     def store(self, element):
         elementHash = self.__hashFunction(element)
+        if elementHash > len(self.arr): elementHash = 1
         if self.arr[elementHash] == -sys.maxsize:
             self.arr[elementHash] = element
             return elementHash
