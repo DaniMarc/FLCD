@@ -11,8 +11,8 @@ try:
     stc.store("ad")
     stc.store("bc")
     stc.store("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
-except IndexError:
-    print("Index out of bounds")
+except IndexError or ValueError as e:
+    print(e)
 
 
 for el in stc.arr:
