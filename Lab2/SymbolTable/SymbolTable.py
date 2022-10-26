@@ -2,7 +2,7 @@ import sys
 
 class SymbolTable:
     def __init__(self):
-        self.arr = [-sys.maxsize] * 2
+        self.arr = [-sys.maxsize] * 100000
         self.elementsCount = 0
 
 
