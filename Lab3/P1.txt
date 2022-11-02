@@ -9,7 +9,7 @@
     keyboardRead(number2);
     keyboardRead(number3);
 
-    condition (number1 > number2) {
+    condition (number1 >= number2) {
         max = number1;
         min = number2;
     }
@@ -30,5 +30,5 @@
 
 ##STOP_PROGRAM
 @
-"dani"
+def def def def "dani"
 "marc

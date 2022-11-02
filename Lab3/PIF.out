@@ -40,6 +40,7 @@ condition -1
 ( -1
 id--number1 698
 > -1
+= -1
 id--number2 699
 ) -1
 { -1
@@ -98,11 +99,8 @@ id--min 324
 ) -1
 ; -1
 ##STOP_PROGRAM -1
-id--d 100
-id--a 97
-id--n 110
-id--i 105
-id--m 109
-id--a 97
-id--r 114
-id--c 99
+def -1
+def -1
+def -1
+def -1
+const"dani" 480

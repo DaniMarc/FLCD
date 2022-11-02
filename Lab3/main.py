@@ -14,37 +14,45 @@ STC = SymbolTable()
 STI = SymbolTable()
 PIF = ProgramInternalForm()
 
-print(word_tokenize("\"hello my darling!\""))
+print(word_tokenize("\"hello my darling! >= \n asd", preserve_line=True))
+
 
 def isIdentifier(word:str):
     return re.match("^[a-zA-Z][a-zA-Z0-9]*$", word)
 
+
 def isNumberConstant(word:str):
     return re.match("^[\d]*$", word)
 
-def isStringConstant(word:str):
-    return re.match("^\"[^\"]*\"$", word)
+
+def correctlyFormedString(word:str):
+    return re.match("^\"([a-zA-z0-9_ ]*)\"$", word)
+
 
 def tokenizeLine(text:str):
     text = text.strip()
     if text.startswith("##") and text in TOKEN_LIST:
         PIF.store((text, -1))
     else:
-        if not text.startswith("\""):
-            text = word_tokenize(text) #TODO
+        if not "\"" in text:
+            text = word_tokenize(text)
+        else: 
+            text = text.split()
         for token in text:
             if token in TOKEN_LIST:
                 PIF.store((token, -1))
-            elif isNumberConstant(token) or isStringConstant(token):
-                index = STC.store(token)
-                PIF.store(("const"+str(token), index))
-            elif isIdentifier(token):
-                index = STI.store(token)
-                PIF.store(("id--"+str(token), index))
+            else:
+                if correctlyFormedString(token):
+                    index = STC.store(token)
+                    PIF.store(("const"+str(token), index))
+                elif isNumberConstant(token):
+                    index = STC.store(token)
+                    PIF.store(("const"+str(token), index))
+                elif isIdentifier(token):
+                    index = STI.store(token)
+                    PIF.store(("id--"+str(token), index))
 
     
-    
-
 def main():
     programFileName = input("Enter program file name:")
 
