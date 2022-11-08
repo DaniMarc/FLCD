@@ -11,10 +11,6 @@ class ProgramInternalForm:
     def store(self, newPair):
         if type(newPair) != tuple:
             raise TypeError("The item that is added in the PIF must be a tuple")
-        # if type(newPair[0] != str):
-        #     raise TypeError("The first item in the tuple must be a string")
-        # if type(newPair[1] != int):
-        #     raise TypeError("The second item in the tuple must be an integer")
         self.__arr.append(newPair)
 
     def outputToFile(self, filename):

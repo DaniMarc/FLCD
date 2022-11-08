@@ -1,34 +1,31 @@
 ##GO_PROGRAM
-    def integer number1;
-    def integer number2;
-    def integer number3;
-    def integer max 0;
-    def integer min 0;
+    def integer number1 
+    def integer number2 
+    def integer number3 
+    def integer max 0 
+    def integer min 0 
 
-    keyboardRead(number1);
-    keyboardRead(number2);
-    keyboardRead(number3);
+    keyboardRead(number1) 
+    keyboardRead(number2) 
+    keyboardRead(number3) 
 
     condition (number1 >= number2) {
-        max = number1;
-        min = number2;
+        max = number1 
+        min = number2 
     }
     else {
-        max = number2;
-        min = number1;
+        max = number2 
+        min = number1 
     }
 
     condition (max < number3) {
-        max = number3;
+        max = number3 
     }
     condition (min > number3) {
-        min = number3;
+        min = number3 
     }
 
-    screenWrite(max);
-    screenWrite(min);
+    screenWrite(max) 
+    screenWrite(min) 
 
 ##STOP_PROGRAM
-@
-def def def def "dani"
-"marc
