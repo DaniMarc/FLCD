@@ -1,0 +1,28 @@
+//P1Err - Program that finds the GCD using Euclidean Algorithm but has 2 types of lexical errors
+
+##GO_PROGRAM
+
+    def integer number1 
+    def integer number2 
+    def integer placeHolder 
+    def integer GCD 0 
+
+    //ERROR
+    @
+    def integer 2number 
+    def char incompleteChar "a
+
+    keyboardRead(number1) 
+    keyboardRead(number2) 
+
+
+    repeatCondition (number2 != 0) {
+        placeHolder = number2 
+        number2 = number1 % number2 
+        number1 = placeHolder 
+    }
+
+    screenWrite(number1) 
+
+
+##STOP_PROGRAM

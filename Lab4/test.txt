@@ -1,0 +1,1 @@
+def condition (number1 >= number2) "dani"
