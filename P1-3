@@ -1,0 +1,107 @@
+//P1 Program in mini-lang that computes the min/max of 3 numbers
+
+##GO_PROGRAM
+
+    def integer number1;
+    def integer number2;
+    def integer number3;
+    def integer max 0;
+    def integer min 0;
+
+    keyboardRead(number1);
+    keyboardRead(number2);
+    keyboardRead(number3);
+
+    condition (number1 > number2) {
+        max = number1;
+        min = number2;
+    }
+    else {
+        max = number2;
+        min = number1;
+    }
+
+    condition (max < number3) {
+        max = number3;
+    }
+    condition (min > number3) {
+        min = number3;
+    }
+
+    screenWrite(max);
+    screenWrite(min);
+
+##STOP_PROGRAM
+
+
+//P2 Program that finds the GCD using Euclidean Algorithm
+
+##GO_PROGRAM
+
+    def integer number1;
+    def integer number2;
+    def integer placeHolder;
+    def integer GCD 0;
+
+    keyboardRead(number1);
+    keyboardRead(number2);
+    
+    repeatCondition (number2 != 0) {
+        placeHolder = number2;
+        number2 = number1 % number2;
+        number1 = placeHolder;
+    }
+
+    screenWrite(number1);
+
+##STOP_PROGRAM
+
+
+
+//P3 Compute the sum of n numbers
+
+##GO_PROGRAM
+
+    def integer number;
+    def integer numbersSum 0;
+
+    keyboardRead(number);
+    
+    repeatCondition (number != 0) {
+        keyboardRead(number);
+        numbersSum = numbersSum = sum;
+    }
+
+    screenWrite(numbersSum);
+
+##STOP_PROGRAM
+
+
+//P1Err - Program that finds the GCD using Euclidean Algorithm but has 2 types of lexical errors
+
+##GO_PROGRAM
+
+    def integer number1;
+    def integer number2;
+    def integer placeHolder;
+    def integer GCD 0;
+
+    //ERROR
+    def integer 2number;
+    def char moreChars "aa";
+    def char incompleteChar "a;
+
+    keyboardRead(number1);
+    keyboardRead(number2);
+
+
+    repeatCondition (number2 != 0) {
+        placeHolder = number2;
+        number2 = number1 % number2;
+        number1 = placeHolder;
+    }
+
+    screenWrite(number1);
+
+
+##STOP_PROGRAM

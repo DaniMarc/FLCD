@@ -1,0 +1,29 @@
+The words - predefined tokens are specified between " and ":  
+
+<program> ::= "##GO_PROGRAM" <statement-list> "##STOP_PROGRAM"
+    <statement-list> ::= <statement> | <statement> ";" <statement-list>
+        <statement> ::= <declaration-statement> | <simple-statement> | <compound-statement>
+
+            <declaration-statement> ::= <simple-declaration> | <array-declaration>
+                <simple-declaration> ::= "def" <type> <identifier> | "def" <type> <identifier> <initial-value>
+                <array-declaration> ::= "defArray" <type> <identifier> | "defArray" <type> <identifier> <initial-array-value>
+
+                <type> ::= "integer" | "char" | "string"
+                <initial-array-value> ::= "[" <list-of-initial-values> "]"
+                <list-of-initial-values> ::= <initial-value> | <initial-value><list-of-initial-values>
+                <initial-value> ::= <constant-number> | <character> | <string>
+
+            <simple-statement> ::= <assign-statement> | <IO-statement>
+                <assign-statement> ::= <identifier> "=" <expression> | <identifier> "=" <identifier> | <identifier> "=" <string>
+                
+                    <expression> ::= <expression> "+" <term> | <expression> "-" <term> | <term>
+                    <term> ::= <term> "*" <factor> | <term> "/" <factor> | <term> "%" <factor> |<factor>
+                    <factor> ::= "(" <expression> ")" | <identifier> | <constant-number>
+                    
+                <IO-statement> ::= "keyboardRead(" <identifier> ")" | "screenWrite(" <identifier> ")"
+
+            <compound-statement> ::= <conditional-statement> | <repeat-conditional-statement>
+                <conditional-statement> ::= "condition(" <condition> ") {" <statement> "}" | "condition(" <condition> ") {" <statement> "} else {" <statement> "}"
+                <repeat-conditional-statement> ::= "repeatCondition(" <condition> ") {" <statement> "}"
+                <condition> ::= <expression> <relation> <expression>
+                <relation> ::= "<" | "<=" | "==" | "!=" | ">=" | ">" 
