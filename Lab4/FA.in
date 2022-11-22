@@ -1,7 +1,9 @@
-p q r
-A B C
+p q r z
+A B C D
 p
-p q r
-p q 0
-q q 1
-p r 1
+z
+p q A
+q r B
+r r C
+r z D
+q z D
