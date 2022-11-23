@@ -1,5 +1,6 @@
 class FiniteAutomata:
-    def __init__(self) -> None:
+    def __init__(self, filename) -> None:
+        self.__filename = filename
         self.__states = []
         self.__alphabet = []
         self.__initialState = None
@@ -8,7 +9,7 @@ class FiniteAutomata:
         self.__initAutomata()
 
     def __initAutomata(self):
-        with open("FA.in") as lines:
+        with open(self.__filename) as lines:
             lineIndex = 1
             for line in lines:
                 if not (line == "\n" or line == " " or line == ""):
@@ -25,6 +26,11 @@ class FiniteAutomata:
                         self.__transitions.append(
                             (transition[0], transition[1], transition[2]))
                     lineIndex += 1
+        if self.__isDFA():
+            print("DETERMINISTIC AUTOMATA")
+        else: 
+            print("NON-DETERMINISTIC AUTOMATA")
+            exit()
 
     def __getNextState(self, currentState, character):
         for transition in self.__transitions:
@@ -33,20 +39,23 @@ class FiniteAutomata:
                     return transition[1]
         return "noState"
 
-    def __isDFA(self, sequence):
-        # TODO
-        pass
+    def __isDFA(self):
+        for transition in self.__transitions:
+            same = 0
+            for trans in self.__transitions:
+                if transition[0] == trans[0] and transition[1] != trans[1] and transition[2] == trans[2]:
+                    same += 1
+            if same > 0: return False
+        return True
 
-    def __isAccepted(self, sequence):
-        if self.__isDFA(sequence):
-            currentState = self.__initialState
-            for character in sequence:
-                nextState = self.__getNextState(currentState, character)
-                if nextState == "noState":
-                    return False
-                currentState = nextState
-            return currentState in self.__finalStates
-        return False
+    def isAccepted(self, sequence):
+        currentState = self.__initialState
+        for character in sequence:
+            nextState = self.__getNextState(currentState, character)
+            if nextState == "noState":
+                return False
+            currentState = nextState
+        return currentState in self.__finalStates
 
     def __printMenu(self):
         print("\n1. Set of states")
@@ -75,7 +84,7 @@ class FiniteAutomata:
     def __testFA(self):
         seq = input("Enter sequence: ")
         print("\t The automaton accepts your sequence: " +
-              str(self.__isAccepted(seq)))
+              str(self.isAccepted(seq)))
 
     def FAMenu(self):
         command = None
@@ -114,5 +123,5 @@ class FiniteAutomata:
         return self.__transitions
 
 
-FA = FiniteAutomata()
-FA.FAMenu()
+# FA = FiniteAutomata()
+# FAMenu()

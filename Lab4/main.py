@@ -3,6 +3,7 @@ from typing import Tuple
 from DataStructures.ProgramInternalForm import ProgramInternalForm
 from DataStructures.SymbolTable import SymbolTable
 from Exceptions.Exception import LexicalError
+from FiniteAutomata.FA import FiniteAutomata
 from utils.colors import ConsoleColors
 from utils.read_tokens import read_tokens
 from nltk.tokenize import word_tokenize
@@ -17,11 +18,15 @@ PIF = ProgramInternalForm()
 
 
 def isIdentifier(word: str):
-    return re.match("^[a-zA-Z][a-zA-Z0-9]*$", word)
+    # return re.match("^[a-zA-Z][a-zA-Z0-9]*$", word)
+    FA = FiniteAutomata("FA.in")
+    return FA.isAccepted(word)
 
 
 def isNumberConstant(word: str):
-    return re.match("^[\d]*$", word)
+    # return re.match("^[\d]*$", word)
+    FA = FiniteAutomata("FAn.in")
+    return FA.isAccepted(word)
 
 
 def correctlyFormedString(word: str):
@@ -80,5 +85,12 @@ def main():
     return 0
 
 
-if (main() == 0):
-    print(ConsoleColors.OKGREEN+"\t>>>Successful run"+ConsoleColors.ENDC)
+while True:
+    com = int(input("1.Main\n2.FA Menu\n>>> "))
+    if com == 1:
+        if (main() == 0):
+            print(ConsoleColors.OKGREEN+"\t>>>Successful run"+ConsoleColors.ENDC)
+    elif com == 2:
+        FA = FiniteAutomata("FA.in")
+        FA.FAMenu()
+    else: break
